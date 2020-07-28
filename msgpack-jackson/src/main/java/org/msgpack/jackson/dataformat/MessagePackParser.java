@@ -379,10 +379,18 @@ public class MessagePackParser
             throws IOException, JsonParseException
     {
         switch (type) {
+            case INT:
+                return String.valueOf(intValue);
+            case LONG:
+                return String.valueOf(longValue);
+            case DOUBLE:
+                return String.valueOf(doubleValue);
             case STRING:
                 return stringValue;
             case BYTES:
                 return new String(bytesValue, MessagePack.UTF8);
+            case BIG_INT:
+                return String.valueOf(biValue);
             default:
                 throw new IllegalStateException("Invalid type=" + type);
         }
